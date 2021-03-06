@@ -4,3 +4,8 @@ demo.mp4
 data
 __pycache__
 pretrained_models
+output
+output.csv
+data.csv
+testdata.csv
+word.csv

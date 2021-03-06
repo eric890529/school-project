@@ -24,3 +24,4 @@ def wordSplit(results):
     #print(pos_sentence_list)
     print("斷詞的list:")
     print(word_sentence_list)
+    return word_sentence_list
