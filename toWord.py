@@ -2,7 +2,7 @@ import  moviepy.editor
 import speech_recognition as sr
 def videoToWav(vName):
     videoName = vName
-    fileName = "test.wav"
+    fileName = "testt.wav"
     video = moviepy.editor.VideoFileClip(videoName)
     audio= video.audio
     audio.write_audiofile(fileName)

@@ -9,3 +9,6 @@ output.csv
 data.csv
 testdata.csv
 word.csv
+BertData.csv
+test_vid.mp4
+bert_model.h5
