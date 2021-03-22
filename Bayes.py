@@ -41,21 +41,23 @@ def Bayes_Predict(data_list):
 
     line = pd.read_csv('word.csv',header=None)
     line.columns = ['text']
-    #print("first:",line['text'][0])
-    #print("line:",len(line['text']))
-    #print("data_list:",len(data_list[0]))
     word = vectorizer.transform(line['text'])
     for i in range(len(data_list[0])):
-        #print("word = ",line.loc[i])
-        #print(word[i])
-        #print(line['text'][i])
-        #print(MNB_model.predict(word[i]))
         with open('output.csv', 'a', newline='') as csvfile:
             # 建立 CSV 檔寫入器
             writer = csv.writer(csvfile)
             writer.writerow([line['text'][i],MNB_model.predict(word[i])])
+    for i in range(len(data_list[0])):
+        print("Bayes_Predict:",MNB_model.predict(word[i]))
+#print("first:",line['text'][0])
+    #print("line:",len(line['text']))
+    #print("data_list:",len(data_list[0]))
 
-    
+
+ #print("word = ",line.loc[i])
+        #print(word[i])
+        #print(line['text'][i])
+        #print(MNB_model.predict(word[i]))
 '''
    #測試向量
     dff = pd.read_csv(  'testdata.csv',header=None)

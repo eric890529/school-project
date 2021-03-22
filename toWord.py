@@ -1,12 +1,12 @@
 import  moviepy.editor
 import speech_recognition as sr
-def videoToWav(vName):
+def videoToWav(vName,fName):
     videoName = vName
-    fileName = "testt.wav"
+    fileName = fName
     video = moviepy.editor.VideoFileClip(videoName)
     audio= video.audio
     audio.write_audiofile(fileName)
-    return fileName
+    #return fileName
 
 def trans(aPath):
     audioPath = aPath

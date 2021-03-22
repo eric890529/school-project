@@ -69,7 +69,7 @@ def dataToCsv(data_list,s):
             writer.writerow([data_list[0][i]])
 
 #num_classes=len(data.label.unique())
-def outcome(s):
+def BERT_Predict(s):
   bert_tokenizer = BertTokenizer.from_pretrained("bert-base-chinese")
   bert_model = TFBertForSequenceClassification.from_pretrained("bert-base-chinese",num_labels=2)
 
@@ -116,6 +116,7 @@ def outcome(s):
   labels = ['Negative','Positive']
   label = tf.argmax(tf_predictions, axis=1)
   label = label.numpy()
+  print("BERT_Predict:")
   for i in range(len(Fdata)):
     print(Fdata[i], ": \n", labels[label[i]])
 
