@@ -8,7 +8,7 @@ def videoToWav(vName,fName):
     audio.write_audiofile(fileName)
     #return fileName
 
-def trans(aPath):
+def voaclToWord(aPath):
     audioPath = aPath
     r = sr.Recognizer() 
     with sr.WavFile(audioPath) as source:  #讀取wav檔

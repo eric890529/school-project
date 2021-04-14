@@ -55,6 +55,7 @@ data['text']=data['text'].map(preprocess_sentence)           # Clean the text co
 print('File has {} rows and {} columns'.format(data.shape[0],data.shape[1]))
 print(data.head())
 '''
+'''
 def dataToCsv(data_list,s):
   with open('BertData.csv', 'w', newline='') as csvfile:
             # 建立 CSV 檔寫入器
@@ -67,24 +68,20 @@ def dataToCsv(data_list,s):
             writer = csv.writer(csvfile)
             # 寫入一列資料
             writer.writerow([data_list[0][i]])
-
+'''
 #num_classes=len(data.label.unique())
-def BERT_Predict(s):
+def BERT_Predict(data_list):
   bert_tokenizer = BertTokenizer.from_pretrained("bert-base-chinese")
   bert_model = TFBertForSequenceClassification.from_pretrained("bert-base-chinese",num_labels=2)
 
 
-  dataf=pd.read_csv(s,encoding='utf-8')
-  #dataf['text']=dataf['text'].map(preprocess_sentence)  
-  Fdata=dataf['text']
-
-  #sentences=data['text']
-  #labels=data['label']
-
+  df=pd.DataFrame(data_list,columns=["text"])
+  data = df['text']
+ 
   input_ids=[]
   attention_masks=[]
 
-  for sent in Fdata:
+  for sent in data:
       bert_inp=bert_tokenizer.encode_plus(sent,add_special_tokens = True,max_length =64,pad_to_max_length = True,return_attention_mask = True)
       input_ids.append(bert_inp['input_ids'])
       attention_masks.append(bert_inp['attention_mask'])
@@ -117,8 +114,8 @@ def BERT_Predict(s):
   label = tf.argmax(tf_predictions, axis=1)
   label = label.numpy()
   print("BERT_Predict:")
-  for i in range(len(Fdata)):
-    print(Fdata[i], ": \n", labels[label[i]])
+  for i in range(len(data)):
+    print( labels[label[i]])
 
 #print(bert_tokenizer.decode(val_inp[0]))
 

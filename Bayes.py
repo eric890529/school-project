@@ -20,6 +20,7 @@ def Bayes_Predict(data_list):
     MNB_model.fit(text, df['label'])
 
     #清除上一筆資料
+    '''
     with open('word.csv', 'w', newline='') as csvfile:
             # 建立 CSV 檔寫入器
             writer = csv.writer(csvfile)
@@ -30,7 +31,8 @@ def Bayes_Predict(data_list):
             writer = csv.writer(csvfile)
             # 寫入一列資料
             writer.writerow("")
-
+    '''
+    '''
     for i in range(len(data_list[0])):
         with open('word.csv', 'a', newline='') as csvfile:
             # 建立 CSV 檔寫入器
@@ -38,16 +40,21 @@ def Bayes_Predict(data_list):
             # 寫入一列資料
             writer.writerow([data_list[0][i]])
             #writer.writerow(["髒話測試"])
-
-    line = pd.read_csv('word.csv',header=None)
-    line.columns = ['text']
-    word = vectorizer.transform(line['text'])
+    '''
+    df=pd.DataFrame(data_list,columns=["text"])
+    data = df['text']
+    
+    #line = pd.read_csv('word.csv',header=None)
+    #line.columns = ['text']
+    word = vectorizer.transform(data)
+    '''
     for i in range(len(data_list[0])):
         with open('output.csv', 'a', newline='') as csvfile:
             # 建立 CSV 檔寫入器
             writer = csv.writer(csvfile)
             writer.writerow([line['text'][i],MNB_model.predict(word[i])])
-    for i in range(len(data_list[0])):
+    '''
+    for i in range(len(data_list)):
         print("Bayes_Predict:",MNB_model.predict(word[i]))
 #print("first:",line['text'][0])
     #print("line:",len(line['text']))
